@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Karan&#39;s Musings</title>
+    <link>https://karanssh.github.io/</link>
+    <description>Recent content on Karan&#39;s Musings</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 02 Aug 2021 00:17:38 +0530</lastBuildDate><atom:link href="https://karanssh.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Another Dev With a Website?!</title>
+      <link>https://karanssh.github.io/posts/another-dev-with-a-website/</link>
+      <pubDate>Mon, 02 Aug 2021 00:17:38 +0530</pubDate>
+      
+      <guid>https://karanssh.github.io/posts/another-dev-with-a-website/</guid>
+      <description>In all honesty, I was repulsed by the idea of having a website for myself, where I showcase all the things I do. I don&amp;rsquo;t really think I needed a website just to show people the &amp;ldquo;things&amp;rdquo; that I create. After all, the things I generally create don&amp;rsquo;t have fancy UI&amp;rsquo;s that one can browse online and marvel at. I generally write backend systems, and deploying those things takes a lot of time, and I doubt someone interested would actually take the trouble.</description>
+    </item>
+    
+  </channel>
+</rss>
