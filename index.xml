@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Karan&#39;s web1</title>
-    <link>https://karanssh.github.io/</link>
-    <description>Recent content on Karan&#39;s web1</description>
+    <title>Karan&#39;s Web1</title>
+    <link>https://karans.sh/</link>
+    <description>Recent content on Karan&#39;s Web1</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 02 Aug 2021 00:17:38 +0530</lastBuildDate><atom:link href="https://karanssh.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-US</language>
+    <copyright>Karan Shah</copyright>
+    <lastBuildDate>Mon, 02 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://karans.sh/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>No JavaScript? No Problem.</title>
-      <link>https://karanssh.github.io/posts/no-js-no-problem/</link>
-      <pubDate>Mon, 02 Aug 2021 00:17:38 +0530</pubDate>
-      
-      <guid>https://karanssh.github.io/posts/no-js-no-problem/</guid>
+      <title>No JavaScript? No Problem</title>
+      <link>https://karans.sh/posts/no-js-no-problem/</link>
+      <pubDate>Mon, 02 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>https://karans.sh/posts/no-js-no-problem/</guid>
       <description>In all honesty, I was repulsed by the idea of having a website for myself, where I showcase all the things I do. I don&amp;rsquo;t really think I needed a website just to show people the &amp;ldquo;things&amp;rdquo; that I create. After all, the things I generally create don&amp;rsquo;t have fancy UI&amp;rsquo;s that one can browse online and marvel at. I generally write backend systems, and deploying those things takes a lot of time, and I doubt someone interested would actually take the trouble.</description>
     </item>
-    
+    <item>
+      <title></title>
+      <link>https://karans.sh/archives/</link>
+      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+      <guid>https://karans.sh/archives/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>https://karans.sh/about/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://karans.sh/about/</guid>
+      <description>Hi, I’m karan!&#xA;I build backend systems that don&amp;rsquo;t suck. Atleast, I try to. I work mostly with Go, C++ and java. I should probably expand on this a bit more. Some day, I might.</description>
+    </item>
   </channel>
 </rss>

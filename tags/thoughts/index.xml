@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Karan&#39;s Web1</title>
-    <link>https://karans.sh/posts/</link>
-    <description>Recent content in Posts on Karan&#39;s Web1</description>
+    <title>thoughts on Karan&#39;s Web1</title>
+    <link>https://karans.sh/tags/thoughts/</link>
+    <description>Recent content in thoughts on Karan&#39;s Web1</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>Karan Shah</copyright>
     <lastBuildDate>Mon, 02 Aug 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://karans.sh/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://karans.sh/tags/thoughts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>No JavaScript? No Problem</title>
       <link>https://karans.sh/posts/no-js-no-problem/</link>
