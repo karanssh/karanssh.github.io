@@ -2,32 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://karans.sh/</loc>
+    <loc>https://karanssh.github.io/</loc>
     <lastmod>2021-08-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://karans.sh/posts/no-js-no-problem/</loc>
+    <loc>https://karanssh.github.io/posts/no-js-no-problem/</loc>
     <lastmod>2021-08-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://karans.sh/posts/</loc>
+    <loc>https://karanssh.github.io/posts/</loc>
     <lastmod>2021-08-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://karans.sh/tags/</loc>
+    <loc>https://karanssh.github.io/tags/</loc>
     <lastmod>2021-08-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://karans.sh/tags/thoughts/</loc>
+    <loc>https://karanssh.github.io/tags/thoughts/</loc>
     <lastmod>2021-08-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://karans.sh/tags/web/</loc>
+    <loc>https://karanssh.github.io/tags/web/</loc>
     <lastmod>2021-08-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://karans.sh/archives/</loc>
+    <loc>https://karanssh.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://karans.sh/about/</loc>
+    <loc>https://karanssh.github.io/about/</loc>
     <lastmod>2019-02-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://karans.sh/categories/</loc>
+    <loc>https://karanssh.github.io/categories/</loc>
   </url><url>
-    <loc>https://karans.sh/series/</loc>
+    <loc>https://karanssh.github.io/series/</loc>
   </url>
 </urlset>
