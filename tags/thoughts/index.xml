@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>thoughts on Karan&#39;s Web1</title>
+    <link>https://karans.sh/tags/thoughts/</link>
+    <description>Recent content in thoughts on Karan&#39;s Web1</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <copyright>Karan Shah</copyright>
+    <lastBuildDate>Mon, 02 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://karans.sh/tags/thoughts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>No JavaScript? No Problem</title>
+      <link>https://karans.sh/posts/no-js-no-problem/</link>
+      <pubDate>Mon, 02 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>https://karans.sh/posts/no-js-no-problem/</guid>
+      <description>In all honesty, I was repulsed by the idea of having a website for myself, where I showcase all the things I do. I don&amp;rsquo;t really think I needed a website just to show people the &amp;ldquo;things&amp;rdquo; that I create. After all, the things I generally create don&amp;rsquo;t have fancy UI&amp;rsquo;s that one can browse online and marvel at. I generally write backend systems, and deploying those things takes a lot of time, and I doubt someone interested would actually take the trouble.</description>
+    </item>
+  </channel>
+</rss>
