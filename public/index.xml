@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Karan&#39;s blog</title>
+        <link>http://localhost:43549/</link>
+        <description>Recent content on Karan&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sun, 06 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:43549/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>No JavaScript? No Problem.</title>
+        <link>http://localhost:43549/p/no-javascript-no-problem./</link>
+        <pubDate>Mon, 02 Aug 2021 00:17:38 +0530</pubDate>
+        
+        <guid>http://localhost:43549/p/no-javascript-no-problem./</guid>
+        <description>&lt;p&gt;In all honesty, I was repulsed by the idea of having a website for myself, where I showcase all the things I do. I don&amp;rsquo;t really think I needed a website just to show people the &amp;ldquo;things&amp;rdquo; that I create. After all, the things I generally create don&amp;rsquo;t have fancy UI&amp;rsquo;s that one can browse online and marvel at. I generally write backend systems, and deploying those things takes a lot of time, and I &lt;em&gt;doubt&lt;/em&gt; someone interested would actually take the trouble.&lt;/p&gt;
+&lt;h2 id=&#34;do-i-even-need-a-website&#34;&gt;Do I even need a website?
+&lt;/h2&gt;&lt;p&gt;It&amp;rsquo;s just easier to give people a link to a github account, and hand off the problem to someone else. You go to &lt;em&gt;that&lt;/em&gt; site, and &lt;em&gt;you&lt;/em&gt; figure out if you like the work that I do. If you need clarifications, you can create an issue, or ping me somewhere, or e-mail me. Should be easy enough, right?&lt;/p&gt;
+&lt;p&gt;Apparently, it&amp;rsquo;s still nice to have a presence on the web, even if it is ephemeral, and the website may die down and burn to the ground one day. So, I have this nice fancy domain, that matches my username everywhere, which makes it easier to find me. I think it could come handy some day if I actually do some amazing stuff that I&amp;rsquo;d want to talk about. The kinda content that goes crazy on hacker news and the likes of reddit.&lt;/p&gt;
+&lt;h2 id=&#34;what-would-a-website-made-by-me-entirely-look-like&#34;&gt;What would a website made by me entirely look like?
+&lt;/h2&gt;&lt;p&gt;Look, it&amp;rsquo;s no secret, my knowledge of javascript is&amp;hellip; lacklustre. Which seems like madness, every developer should have a rough idea of what it is, right? Well, I&amp;rsquo;ve managed to go about life and earn money without ever writing a single line of javascript code that ran on production. Yes, I&amp;rsquo;ve done a few changes here and there for testing stuff locally, but nothing that I would count as impactful. I dont know vuejs,reactjs or any of the other million or so frameworks that are &lt;em&gt;hot&lt;/em&gt;. I simply don&amp;rsquo;t have to care about them for now. So, this website has ZERO javascript. Yep, nothing. Not even analytics. I know most of people who would ever read this would be bots anyway.&lt;/p&gt;
+&lt;h2 id=&#34;what-would-i-add-here&#34;&gt;What would I add here?
+&lt;/h2&gt;&lt;p&gt;I currently use Obsidian nearly exclusively for writing. I think I will get around to adding more content soon(maybe) and fix the site&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Archives</title>
+        <link>http://localhost:43549/archives/</link>
+        <pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:43549/archives/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Search</title>
+        <link>http://localhost:43549/search/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:43549/search/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>
