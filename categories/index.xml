@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Categories on Karan&#39;s Web1</title>
-    <link>https://karanssh.github.io/categories/</link>
-    <description>Recent content in Categories on Karan&#39;s Web1</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
-    <copyright>Karan Shah</copyright>
-    <atom:link href="https://karanssh.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
+    <channel>
+        <title>Categories on Karan&#39;s blog</title>
+        <link>https://karans.sh/categories/</link>
+        <description>Recent content in Categories on Karan&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language><atom:link href="https://karans.sh/categories/index.xml" rel="self" type="application/rss+xml" />
+    </channel>
 </rss>

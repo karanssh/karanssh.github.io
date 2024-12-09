@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tags on Karan&#39;s Web1</title>
-    <link>https://karanssh.github.io/tags/</link>
-    <description>Recent content in Tags on Karan&#39;s Web1</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
-    <copyright>Karan Shah</copyright>
-    <lastBuildDate>Mon, 02 Aug 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://karanssh.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>thoughts</title>
-      <link>https://karanssh.github.io/tags/thoughts/</link>
-      <pubDate>Mon, 02 Aug 2021 00:00:00 +0000</pubDate>
-      <guid>https://karanssh.github.io/tags/thoughts/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>web</title>
-      <link>https://karanssh.github.io/tags/web/</link>
-      <pubDate>Mon, 02 Aug 2021 00:00:00 +0000</pubDate>
-      <guid>https://karanssh.github.io/tags/web/</guid>
-      <description></description>
-    </item>
-  </channel>
+    <channel>
+        <title>Tags on Karan&#39;s blog</title>
+        <link>https://karans.sh/tags/</link>
+        <description>Recent content in Tags on Karan&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language><atom:link href="https://karans.sh/tags/index.xml" rel="self" type="application/rss+xml" />
+    </channel>
 </rss>
