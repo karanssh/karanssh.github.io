@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Karan&#39;s blog</title>
-        <link>https://karans.sh/</link>
-        <description>Recent content on Karan&#39;s blog</description>
+        <title>Posts on Karan&#39;s blog</title>
+        <link>https://karans.sh/post/</link>
+        <description>Recent content in Posts on Karan&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 06 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://karans.sh/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 02 Aug 2021 00:17:38 +0530</lastBuildDate><atom:link href="https://karans.sh/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>No JavaScript? No Problem.</title>
         <link>https://karans.sh/p/no-javascript-no-problem./</link>
         <pubDate>Mon, 02 Aug 2021 00:17:38 +0530</pubDate>
@@ -21,22 +21,6 @@
 &lt;h2 id=&#34;what-would-i-add-here&#34;&gt;What would I add here?
 &lt;/h2&gt;&lt;p&gt;I currently use Obsidian nearly exclusively for writing. I think I will get around to adding more content soon(maybe) and fix the site&lt;/p&gt;
 </description>
-        </item>
-        <item>
-        <title>Archives</title>
-        <link>https://karans.sh/archives/</link>
-        <pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://karans.sh/archives/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Search</title>
-        <link>https://karans.sh/search/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://karans.sh/search/</guid>
-        <description></description>
         </item>
         
     </channel>
