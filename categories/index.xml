@@ -5,6 +5,15 @@
         <link>https://karans.sh/categories/</link>
         <description>Recent content in Categories on Karan&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language><atom:link href="https://karans.sh/categories/index.xml" rel="self" type="application/rss+xml" />
+        <language>en-us</language>
+        <lastBuildDate>Wed, 11 Dec 2024 13:24:37 +0000</lastBuildDate><atom:link href="https://karans.sh/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Health</title>
+        <link>https://karans.sh/categories/health/</link>
+        <pubDate>Wed, 11 Dec 2024 13:24:37 +0000</pubDate>
+        
+        <guid>https://karans.sh/categories/health/</guid>
+        <description></description>
+        </item>
+        
     </channel>
 </rss>
