@@ -17,7 +17,13 @@
     <loc>https://karans.sh/</loc>
     <lastmod>2025-08-22T22:24:37+00:00</lastmod>
   </url><url>
+    <loc>https://karans.sh/tags/loss/</loc>
+    <lastmod>2025-08-22T22:24:37+00:00</lastmod>
+  </url><url>
     <loc>https://karans.sh/post/</loc>
+    <lastmod>2025-08-22T22:24:37+00:00</lastmod>
+  </url><url>
+    <loc>https://karans.sh/tags/</loc>
     <lastmod>2025-08-22T22:24:37+00:00</lastmod>
   </url><url>
     <loc>https://karans.sh/categories/</loc>
@@ -36,7 +42,5 @@
     <lastmod>2022-03-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://karans.sh/search/</loc>
-  </url><url>
-    <loc>https://karans.sh/tags/</loc>
   </url>
 </urlset>
