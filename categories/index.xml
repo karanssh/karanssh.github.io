@@ -6,7 +6,15 @@
         <description>Recent content in Categories on Karan&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 22 Aug 2025 22:24:37 +0000</lastBuildDate><atom:link href="https://karans.sh/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 12 Sep 2025 11:11:48 +0000</lastBuildDate><atom:link href="https://karans.sh/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Health</title>
+        <link>https://karans.sh/categories/health/</link>
+        <pubDate>Fri, 12 Sep 2025 11:11:48 +0000</pubDate>
+        
+        <guid>https://karans.sh/categories/health/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Loss</title>
         <link>https://karans.sh/categories/loss/</link>
         <pubDate>Fri, 22 Aug 2025 22:24:37 +0000</pubDate>
@@ -23,11 +31,11 @@
         <description></description>
         </item>
         <item>
-        <title>Health</title>
-        <link>https://karans.sh/categories/health/</link>
-        <pubDate>Wed, 11 Dec 2024 13:24:37 +0000</pubDate>
+        <title>Tech</title>
+        <link>https://karans.sh/categories/tech/</link>
+        <pubDate>Mon, 02 Aug 2021 00:17:38 +0530</pubDate>
         
-        <guid>https://karans.sh/categories/health/</guid>
+        <guid>https://karans.sh/categories/tech/</guid>
         <description></description>
         </item>
         
