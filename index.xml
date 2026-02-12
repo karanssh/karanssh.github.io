@@ -6,7 +6,57 @@
         <description>Recent content on Karan&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 12 Sep 2025 11:11:48 +0000</lastBuildDate><atom:link href="https://karans.sh/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 12 Feb 2026 19:24:21 +0530</lastBuildDate><atom:link href="https://karans.sh/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>I still write a lot without AI</title>
+        <link>https://karans.sh/p/i-still-write-a-lot-without-ai/</link>
+        <pubDate>Thu, 12 Feb 2026 19:24:21 +0530</pubDate>
+        
+        <guid>https://karans.sh/p/i-still-write-a-lot-without-ai/</guid>
+        <description>&lt;p&gt;It seems like when it comes to AI discourse, there are about three categories, that I see:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;AI Bros (many who have migrated from being cryptobros)&lt;/p&gt;
+&lt;p&gt;These are the same crypto bros who tried to sell you stupid ass jpeg&amp;rsquo;s on the blockchain. They are gonna be at the forefront of letting you know that your job is totally gonna be gone. Oh, you are a developer? Just wait, in 6 months, AI is gonna write all your code. You are totally gonna have to sell hot dogs for a living. If there&amp;rsquo;s anything I have learnt from that time, it is that these folks are not to be trusted with anyything meaningful. They destroy everything that they touch, eventually.&lt;/p&gt;
+&lt;p&gt;There are a few who talk about how the future is agentic, and how we all will relax while an AI agent that never complains or takes coffee breaks is gonna bust its balls (in theory). Are agents cool tech? definitely. But are they 1-1 replacement for actual real devs? nope, not even close.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;AI Doomers - Those who dunk on anything AI&lt;/p&gt;
+&lt;p&gt;These are the folks who will oppose anything and everything that comes out from AI outputs. I understand where they come from, the large scale theft of IP is definitely a hot potato issue when it comes to the legality of what is being done while training these models. However, the reality is that most of us just have to deal with what we get. When I dont have control over things, I dont fret about what is going on, but about how I can deal with the impacts of what I am being dealt.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The fence-sitters - who just use it and dabble in the discourse in passing&lt;/p&gt;
+&lt;p&gt;I think, that I fall into this category. Whenever I see a new model come out that is flashy, I will give it a shot and see if it&amp;rsquo;s got anything in for me that can help me. My wife uses chatgpt extensively for her work, and I have seen the productivity gains first hand. In the right hands, this is a great tool. But at the same time, I enjoyed swearing at my keyboard when I blindly accepted a CEF API related code output from copilot, which did not exist. Fun times, when your dear model just straight up lies to you and gaslights you about how this API totally exists.&lt;/p&gt;
+&lt;p&gt;I have heard enough times, &amp;ldquo;oh, my mistake, I am just a language model&amp;rdquo;. I genuinely like it, for the most part, it helps automate writing tests and boiler plate that I would have eventually done anyway. But I have seen my teammates literally give me AI slop code output in PRs. I really, really hate it but I cant do anything. I do enjoy having a job and it&amp;rsquo;s not like I can go crazy and just tell my teammates to not send me slop PRs. I simply ask: is this tested? does this pass e2e runs?&lt;/p&gt;
+&lt;p&gt;For a while, it used to always fail my e2e runs that are nicely setup. But, now with the newer models, it tweaks code sometimes in ways to make it pass tests, but cmon. The test exists because its supposed to work. you cant just break my lock and say, yeaaaah, this passes. Honestly, I have no clue what to do.&lt;/p&gt;
+&lt;p&gt;But anyway, as I say, it is what it is.&lt;/p&gt;
+&lt;p&gt;My writing might not be fancy 10K word posts that pass all the SEO magic, but it&amp;rsquo;s writing that I have done, from my own mind. Again, I will use AI automcomplete and grammar correction - these are genuinely nice, not having to run my writing through gdocs and then back to markdown is nice. But as I said, most of what you are reading are my own thoughts and words.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://karans.sh/p/i-still-write-a-lot-without-ai/image.png&#34;
+	width=&#34;800&#34;
+	height=&#34;518&#34;
+	srcset=&#34;https://karans.sh/p/i-still-write-a-lot-without-ai/image_huda4ce5b5731c97acf55805eb3bcb81d6_372485_480x0_resize_box_3.png 480w, https://karans.sh/p/i-still-write-a-lot-without-ai/image_huda4ce5b5731c97acf55805eb3bcb81d6_372485_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;All I want to do is get on with my life&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;154&#34;
+		data-flex-basis=&#34;370px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I have felt lately that something seems off, especially when I read replies to posts, online memes, or something. I am not gonna post examples here, these are available plenty.&lt;/p&gt;
+&lt;p&gt;All I can say is, for the foreseeable future, I will continue writing myself, without AI autogenerating my thoughts for me. The whole point of writing is to express your own thoughts and if youre having trouble with that, and let a machine do that for you, then you should ask yourself - what are you accomplishing? are you adding any value to :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the world&lt;/li&gt;
+&lt;li&gt;yourself&lt;/li&gt;
+&lt;li&gt;your readers that are not crawlers :P&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Anyway, not my place to judge people, you do you, and I will do what I feel is right for me. After all, it&amp;rsquo;s not like any of this will matter. Definitely not my humble opinion on this issue.&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Dental Hygiene ain&#39;t no joke</title>
         <link>https://karans.sh/p/dental-hygiene-aint-no-joke/</link>
         <pubDate>Fri, 12 Sep 2025 11:11:48 +0000</pubDate>

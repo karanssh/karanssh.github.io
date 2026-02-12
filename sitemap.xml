@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://karans.sh/p/i-still-write-a-lot-without-ai/</loc>
+    <lastmod>2026-02-12T19:24:21+05:30</lastmod>
+  </url><url>
     <loc>https://karans.sh/p/dental-hygiene-aint-no-joke/</loc>
     <lastmod>2025-09-12T11:11:48+00:00</lastmod>
   </url><url>
@@ -18,22 +21,25 @@
     <lastmod>2021-08-02T00:17:38+05:30</lastmod>
   </url><url>
     <loc>https://karans.sh/</loc>
-    <lastmod>2025-09-12T11:11:48+00:00</lastmod>
+    <lastmod>2026-02-12T19:24:21+05:30</lastmod>
+  </url><url>
+    <loc>https://karans.sh/categories/ai/</loc>
+    <lastmod>2026-02-12T19:24:21+05:30</lastmod>
   </url><url>
     <loc>https://karans.sh/categories/</loc>
-    <lastmod>2025-09-12T11:11:48+00:00</lastmod>
+    <lastmod>2026-02-12T19:24:21+05:30</lastmod>
+  </url><url>
+    <loc>https://karans.sh/post/</loc>
+    <lastmod>2026-02-12T19:24:21+05:30</lastmod>
+  </url><url>
+    <loc>https://karans.sh/categories/software/</loc>
+    <lastmod>2026-02-12T19:24:21+05:30</lastmod>
   </url><url>
     <loc>https://karans.sh/categories/health/</loc>
     <lastmod>2025-09-12T11:11:48+00:00</lastmod>
   </url><url>
-    <loc>https://karans.sh/post/</loc>
-    <lastmod>2025-09-12T11:11:48+00:00</lastmod>
-  </url><url>
     <loc>https://karans.sh/categories/loss/</loc>
     <lastmod>2025-08-22T22:24:37+00:00</lastmod>
-  </url><url>
-    <loc>https://karans.sh/categories/software/</loc>
-    <lastmod>2025-04-05T19:24:37+00:00</lastmod>
   </url><url>
     <loc>https://karans.sh/archives/</loc>
     <lastmod>2022-03-06T00:00:00+00:00</lastmod>
