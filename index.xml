@@ -6,7 +6,49 @@
         <description>Recent content on Karan&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 12 Feb 2026 19:24:21 +0530</lastBuildDate><atom:link href="https://karans.sh/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 04 Mar 2026 17:24:37 +0000</lastBuildDate><atom:link href="https://karans.sh/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Everything AI reads the same and it is driving me crazy</title>
+        <link>https://karans.sh/p/everything-ai-reads-the-same-and-it-is-driving-me-crazy/</link>
+        <pubDate>Wed, 04 Mar 2026 17:24:37 +0000</pubDate>
+        
+        <guid>https://karans.sh/p/everything-ai-reads-the-same-and-it-is-driving-me-crazy/</guid>
+        <description>&lt;p&gt;Everywhere I go, I am faced with the same kind of formatting of posts and replies. It is driving me nuts. I am blocking accounts and posts left right and centre.&lt;/p&gt;
+&lt;p&gt;I need to get this out of my system, so here it goes:&lt;/p&gt;
+&lt;p&gt;I DO NOT WANT TO READ CHATGPT FORMATTED TEXT, even if its your original thought!
+I DO NOT WANT TO READ LINES AND LINES OF AI GEN BLOG POSTS WHERE DETAILS ARE ALL WRONG.&lt;/p&gt;
+&lt;p&gt;What I want to do - read your style of writing! your thoughts. Not what&amp;rsquo;s &amp;ldquo;better&amp;rdquo; for SEO. Emojis are fine but EVERY SINGLE TOPIC DOES NOT NEED AN EMOJI DESCRIBING IT. Which is also selected by the AI bot.&lt;/p&gt;
+&lt;p&gt;Anyway, Kagi has a cool little thing:&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://kagi.com/smallweb&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Kagi Small Web&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I have been addicted to it lately. Very, very refreshing. Everyone should go check it out. I will continue to explore cool stuff like this now.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Tier 3 Engineering in India is in deep trouble</title>
+        <link>https://karans.sh/p/tier-3-engineering-in-india-is-in-deep-trouble/</link>
+        <pubDate>Sun, 01 Mar 2026 12:24:37 +0000</pubDate>
+        
+        <guid>https://karans.sh/p/tier-3-engineering-in-india-is-in-deep-trouble/</guid>
+        <description>&lt;p&gt;I rarely talk to or mentor younger kids, and typically, the advice I offer them is relatively simple - be curious, build things, learn things, have fun. You can figure the rest out. This might not be the advice they are looking for, but it&amp;rsquo;s good enough that I don&amp;rsquo;t have to deal with the liability of giving guided advice on what they need to do in their career.&lt;/p&gt;
+&lt;p&gt;However, we seem to have a huge division in quality of technical people in India. Everyone eggs on Tier - 3 college kids, where the college is absolutely dog shit tier. I like to not make assumptions, since assumptions are never good. You never know if its someone that is good technically but just suck at entrance exams - since I also come from such a background.&lt;/p&gt;
+&lt;p&gt;Lately though, I can see why this opinion is more widespread. Most stereotypes form when you interact with a large enough group that forms the base of your opinion. I spoke to a few kids recently, and my honest assessment is that these kids are not going to get a job anytime soon&amp;hellip;&lt;/p&gt;
+&lt;p&gt;This is how the entry level job market has progressed:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The narrative that CEOs are pushing is AI will do entry level jobs, so we don&amp;rsquo;t need junior people&lt;/li&gt;
+&lt;li&gt;CEOs look at AI demos of &amp;ldquo;agents&amp;rdquo; who do tasks that are grunt work which should be assigned to juniors. Why pay a human when I can have 100s of agents for cheaper is what they are sold.&lt;/li&gt;
+&lt;li&gt;This LLM induced psychosis means that a lot of the entry level jobs have dried up.&lt;/li&gt;
+&lt;li&gt;Fierce competition ensues for a job market with fewer jobs and a large pool of people who want it
+The reverse is happening in the senior market, but that&amp;rsquo;s a different topic.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I spoke to these kids and here&amp;rsquo;s what they have learnt/done so far in their four years of undergrad:&lt;/p&gt;
+&lt;p&gt;Whatever their professors deemed was OK. Nothing that actually matters. Nobody thought to stop for a second and see if what they are doing matters. These people are still writing fucking C++ code on pen and paper. FUCK! If they put me in front of some fuckall professor in their 40s or 50s and I saw this, I will have very nice words to tell such a person. This is why I am not the person you invite to your college speaking events.&lt;/p&gt;
+&lt;p&gt;Kanged projects - kids formed groups to build a &amp;ldquo;project&amp;rdquo; to learn skills like JS or some backend language. Not even fully implemented, kids cloned someone&amp;rsquo;s half working github project, deployed it to netlify, put their photos and got 10s on their &amp;ldquo;practical project&amp;rdquo;. I probed a bit on their knowledge of JS - I am not the JS guy, I barely know basics of promises and async (not my day job, so its a little rusty). Kids stare at me as if I asked them something alien. Guys - this is table stakes.&lt;/p&gt;
+&lt;p&gt;Ok, screw it, maybe some of these kids are DSA paglus? So I asked them a few basic DSA questions - nothing fancy, just tree traversals, binary search - all probably low medium level LC stuff. What I got: BLANK FACES. I asked them, is this something that is not taught in your college? I was never a DSA geek, but I knew what people were doing. Are they just disconnected from reality?&lt;/p&gt;
+&lt;p&gt;Well, nevermind. So I probed a bit further and they basically know nothing of value after four fucking years. Who the fuck is going to hire them? WITCH company jobs are drying up. These kids joke about getting into faangs, and I just stand here thinking - these guys are going to get a reality like how you throw bricks from the 10th floor of your building.&lt;/p&gt;
+&lt;p&gt;All of this is just a distraction for me because I dont intend to go the &amp;ldquo;bhaiya-didi&amp;rdquo; route to make my money. I kind of understand the appeal of that side of the business. The key takeaway is that many many of our college grads are screwed big time.&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>I still write a lot without AI</title>
         <link>https://karans.sh/p/i-still-write-a-lot-without-ai/</link>
         <pubDate>Thu, 12 Feb 2026 19:24:21 +0530</pubDate>

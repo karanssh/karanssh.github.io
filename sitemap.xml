@@ -2,6 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://karans.sh/p/everything-ai-reads-the-same-and-it-is-driving-me-crazy/</loc>
+    <lastmod>2026-03-04T17:24:37+00:00</lastmod>
+  </url><url>
+    <loc>https://karans.sh/p/tier-3-engineering-in-india-is-in-deep-trouble/</loc>
+    <lastmod>2026-03-01T12:24:37+00:00</lastmod>
+  </url><url>
     <loc>https://karans.sh/p/i-still-write-a-lot-without-ai/</loc>
     <lastmod>2026-02-12T19:24:21+05:30</lastmod>
   </url><url>
@@ -21,15 +27,18 @@
     <lastmod>2021-08-02T00:17:38+05:30</lastmod>
   </url><url>
     <loc>https://karans.sh/</loc>
-    <lastmod>2026-02-12T19:24:21+05:30</lastmod>
-  </url><url>
-    <loc>https://karans.sh/categories/ai/</loc>
-    <lastmod>2026-02-12T19:24:21+05:30</lastmod>
+    <lastmod>2026-03-04T17:24:37+00:00</lastmod>
   </url><url>
     <loc>https://karans.sh/categories/</loc>
-    <lastmod>2026-02-12T19:24:21+05:30</lastmod>
+    <lastmod>2026-03-04T17:24:37+00:00</lastmod>
   </url><url>
     <loc>https://karans.sh/post/</loc>
+    <lastmod>2026-03-04T17:24:37+00:00</lastmod>
+  </url><url>
+    <loc>https://karans.sh/categories/tech/</loc>
+    <lastmod>2026-03-04T17:24:37+00:00</lastmod>
+  </url><url>
+    <loc>https://karans.sh/categories/ai/</loc>
     <lastmod>2026-02-12T19:24:21+05:30</lastmod>
   </url><url>
     <loc>https://karans.sh/categories/software/</loc>
@@ -46,9 +55,6 @@
   </url><url>
     <loc>https://karans.sh/page/</loc>
     <lastmod>2022-03-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://karans.sh/categories/tech/</loc>
-    <lastmod>2021-08-02T00:17:38+05:30</lastmod>
   </url><url>
     <loc>https://karans.sh/search/</loc>
   </url><url>
