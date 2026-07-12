@@ -395,6 +395,27 @@ The reverse is happening in the senior market, but that&amp;rsquo;s a different 
         <description></description>
         </item>
         <item>
+        <title>Resume</title>
+        <link>https://karans.sh/resume/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://karans.sh/resume/</guid>
+        <description>&lt;p&gt;If you enjoyed reading my content, or stubmled upon this site and would like to hire me, you can refer to my resume below.&lt;/p&gt;
+&lt;div class=&#34;resume-actions&#34;&gt;
+  &lt;a href=&#34;https://karans.sh/resume/karan_shah_resume.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Open PDF in a new tab&lt;/a&gt;
+  &lt;span aria-hidden=&#34;true&#34;&gt;|&lt;/span&gt;
+  &lt;a href=&#34;karan_shah_resume.pdf&#34; download&gt;Download PDF&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&#34;resume-embed&#34;&gt;
+  &lt;object data=&#34;karan_shah_resume.pdf#view=FitH&#34; type=&#34;application/pdf&#34;&gt;
+    &lt;p&gt;
+      Your browser cannot render this PDF inline.
+      &lt;a href=&#34;https://karans.sh/resume/karan_shah_resume.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Open the resume PDF&lt;/a&gt;.
+    &lt;/p&gt;
+  &lt;/object&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>Search</title>
         <link>https://karans.sh/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
