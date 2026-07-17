@@ -6,7 +6,343 @@
         <description>Recent content in AI on Karan&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 12 Feb 2026 19:24:21 +0530</lastBuildDate><atom:link href="https://karans.sh/categories/ai/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 17 Jul 2026 00:22:23 +0530</lastBuildDate><atom:link href="https://karans.sh/categories/ai/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Fixing a multi-monitor display issue with AI</title>
+        <link>https://karans.sh/p/fixing-a-multi-monitor-display-issue-with-ai/</link>
+        <pubDate>Fri, 17 Jul 2026 00:22:23 +0530</pubDate>
+        
+        <guid>https://karans.sh/p/fixing-a-multi-monitor-display-issue-with-ai/</guid>
+        <description>&lt;p&gt;I recently upgraded to cachy-os, and I have an older laptop (circa 2019), that I still daily drive. It&amp;rsquo;s not the best at many tasks, but for my purpose of writing small scripts and projects + browsing the web, it works just fine. I ran into a very specific issue that bugged me like crazy, enough to tinker - when I connected it to a dock on a USB port, my displays would just refuse to work properly.&lt;/p&gt;
+&lt;p&gt;The symptoms included:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The bottom desktop bar (KDE Plasma panel) vanished completely.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Active application windows were lost in ghost coordinates.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The desktop environment (plasmashell) crashed on startup with TypeError: Value is null warnings.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Context:&lt;/p&gt;
+&lt;p&gt;I have two 2K monitors that can run at 144Hz, connected to a dock(fun fact - its a dell WD19DCS that I got for $30) via DP, which connects to my USB 3.1 port. All my peripherals also go in there. Not enough bandwidth to handle it all.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lspci &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -i usb
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;08:00.3 USB controller: Advanced Micro Devices, Inc. &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;AMD&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Renoir/Cezanne USB 3.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;08:00.4 USB controller: Advanced Micro Devices, Inc. &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;AMD&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Renoir/Cezanne USB 3.1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Even though the Linux kernel uses the classic classification USB 3.1 in that text string, the specific architecture of the AMD Renoir/Cezanne hardware block means these controllers run at a maximum line speed of 10Gbps (historically called USB 3.1 Gen 2, now officially known as USB 3.2 Gen 2). Thanks USB forum, very cool.&lt;/p&gt;
+&lt;p&gt;How did I debug this?&lt;/p&gt;
+&lt;p&gt;always check the logs first&lt;/p&gt;
+&lt;p&gt;first, we check kernel logs:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo dmesg -w
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;A ton of noise here, for sure:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;66
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;67
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;68
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;69
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;70
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;71
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;72
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;73
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;74
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;75
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;76
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;77
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;78
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;79
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;80
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;81
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;82
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;83
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;84
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;85
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;86
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;87
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; --user -b &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; -e -u plasma-kwin_wayland
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:49:16 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Atomic modeset commit failed! Invalid argument
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:49:29 karanpc kwin_wayland_wrapper&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;536167&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: xkbcommon: ERROR: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;XKB-679&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; No Compose file &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; locale &lt;span class=&#34;s2&#34;&gt;&amp;#34;en_IN.ISO8859-1&amp;#34;&lt;/span&gt;: locale is either invalid or not installed
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:49:29 karanpc kwin_wayland_wrapper&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;536167&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: xkbcommon: ERROR: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;XKB-679&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; couldn&lt;span class=&#34;s1&#34;&gt;&amp;#39;t find a Compose file for locale &amp;#34;en_IN&amp;#34; (mapped to &amp;#34;en_IN.ISO8859-1&amp;#34;)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Jul 17 16:49:29 karanpc kscreenlocker_greet[536167]: failed to create compose table
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Jul 17 16:49:31 karanpc kwin_wayland[4013]: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Jul 17 16:49:31 karanpc kwin_wayland[4013]: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Jul 17 16:49:31 karanpc kwin_wayland[4013]: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Jul 17 16:49:33 karanpc kwin_wayland[4013]: Could not delete render time query because no context is current
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Jul 17 16:49:33 karanpc kwin_wayland[4013]: Could not delete render time query because no context is current
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Jul 17 16:49:33 karanpc kwin_wayland[4013]: Could not delete render time query because no context is current
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Jul 17 16:51:17 karanpc kwin_wayland[4013]: Failed to open drm device 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Jul 17 16:51:17 karanpc kwin_wayland[4013]: Failed to open drm device 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Jul 17 16:51:17 karanpc kwin_wayland[4013]: Failed to open drm device 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Jul 17 16:51:18 karanpc kscreenlocker_greet[537986]: There are no outputs - creating placeholder screen
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Jul 17 16:51:23 karanpc kwin_wayland_wrapper[537986]: xkbcommon: ERROR: [XKB-679] No Compose file for locale &amp;#34;en_IN.ISO8859-1&amp;#34;: locale is either invalid or not installed
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Jul 17 16:51:23 karanpc kwin_wayland_wrapper[537986]: xkbcommon: ERROR: [XKB-679] couldn&amp;#39;&lt;/span&gt;t find a Compose file &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; locale &lt;span class=&#34;s2&#34;&gt;&amp;#34;en_IN&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;mapped to &lt;span class=&#34;s2&#34;&gt;&amp;#34;en_IN.ISO8859-1&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:51:23 karanpc kscreenlocker_greet&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;537986&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: failed to create compose table
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:51:41 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:51:41 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:51:41 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:51:43 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Could not delete render &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt; query because no context is current
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:51:43 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Could not delete render &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt; query because no context is current
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:51:43 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Could not delete render &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt; query because no context is current
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:53:18 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Libinput: event0  - Power Button: client bug: event processing lagging behind by 3040ms, your system is too slow
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:53:18 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Libinput: event12 - Logitech USB Receiver Mouse: client bug: event processing lagging behind by 355ms, your system is too slow
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:53:18 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Failed to open drm device 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:53:18 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Failed to open drm device 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:53:18 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Failed to open drm device 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:53:20 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Failed to open /dev/input/event10 device &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;No such device&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:53:26 karanpc kwin_wayland_wrapper&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;540429&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: xkbcommon: ERROR: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;XKB-679&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; No Compose file &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; locale &lt;span class=&#34;s2&#34;&gt;&amp;#34;en_IN.ISO8859-1&amp;#34;&lt;/span&gt;: locale is either invalid or not installed
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:53:26 karanpc kwin_wayland_wrapper&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;540429&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: xkbcommon: ERROR: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;XKB-679&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; couldn&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;t find a Compose file &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; locale &lt;span class=&#34;s2&#34;&gt;&amp;#34;en_IN&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;mapped to &lt;span class=&#34;s2&#34;&gt;&amp;#34;en_IN.ISO8859-1&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:53:26 karanpc kscreenlocker_greet&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;540429&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: failed to create compose table
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:53:29 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:53:29 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:53:30 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Could not delete render &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt; query because no context is current
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:53:30 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Could not delete render &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt; query because no context is current
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:53:30 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Could not delete render &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt; query because no context is current
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:59:23 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:59:23 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:59:23 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:59:24 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Could not delete render &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt; query because no context is current
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:59:24 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Could not delete render &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt; query because no context is current
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jul &lt;span class=&#34;m&#34;&gt;17&lt;/span&gt; 16:59:24 karanpc kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Could not delete render &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt; query because no context is current 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;A lot about display, isn&amp;rsquo;t it?&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kscreen-doctor --outputs
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Checking this shows what resolution and refresh rate we are set at.&lt;/p&gt;
+&lt;p&gt;how to know which driver is causing this? the max noise is from the gpu driver:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Validation Warning: Unknown Status failed validation.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;425080.040455&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; amdgpu 0000:08:00.0: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;drm&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Mode Validation Warning: Unknown Status failed validation.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;425080.046980&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; amdgpu 0000:08:00.0: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;drm&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Mode Validation Warning: Unknown Status failed validation.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;425080.051484&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; amdgpu 0000:08:00.0: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;drm&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Mode Validation Warning: Unknown Status failed validation.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;425086.121387&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;UFW BLOCK&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;IN&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;wlan0 &lt;span class=&#34;nv&#34;&gt;OUT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;MAC&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;f0:a6:54:62:00:4b:4c:0f:3e:59:fc:2c:86:dd &lt;span class=&#34;nv&#34;&gt;SRC&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;fe80:0000:0000:0000:4d48:62ef:06de:76e0 &lt;span class=&#34;nv&#34;&gt;DST&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ff02:0000:0000:0000:0000:0000:0001:0003 &lt;span class=&#34;nv&#34;&gt;LEN&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;70&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;TC&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;HOPLIMIT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;FLOWLBL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;731061&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PROTO&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;UDP &lt;span class=&#34;nv&#34;&gt;SPT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;49340&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;DPT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;5355&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;LEN&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;30&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;MARK&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0x3214 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;425098.487271&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;UFW BLOCK&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;IN&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;wlan0 &lt;span class=&#34;nv&#34;&gt;OUT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;MAC&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;f0:a6:54:62:00:4b:3c:64:cf:3b:e6:44:08:00 &lt;span class=&#34;nv&#34;&gt;SRC&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;192.168.68.1 &lt;span class=&#34;nv&#34;&gt;DST&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;192.168.68.60 &lt;span class=&#34;nv&#34;&gt;LEN&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;375&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;TOS&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0x00 &lt;span class=&#34;nv&#34;&gt;PREC&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0x00 &lt;span class=&#34;nv&#34;&gt;TTL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ID&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;50401&lt;/span&gt; DF &lt;span class=&#34;nv&#34;&gt;PROTO&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;UDP &lt;span class=&#34;nv&#34;&gt;SPT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1900&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;DPT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1900&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;LEN&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;355&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;MARK&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0x3214 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;425109.966692&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;drm&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; MST_DSC Send DSC disable to synaptics 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journalctl --user -b &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; -e -u plasma-kwin_wayland
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kscreen-doctor --outputs
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Now, I could have google searched and read forums - but gemini flash gave me 2-3 options, and I used my discernment to check the most plausible cause.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s the model output that I would have spent an unhealthy amount of time figuring out without AI doing all this reading:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;KWin Atomic Modeset Failures
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Your journalctl shows this critical error:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kwin_wayland&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;4013&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: Atomic modeset commit failed! Invalid argument
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;When KWin &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;the window manager&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; tries to paint the desktop space across those high-refresh displays, the graphics driver returns an invalid argument because the configuration is physically impossible on that link. When an atomic commit fails in Wayland, KWin drops the output or maps it incorrectly.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Because the system thinks the display topology is invalid, Plasma deletes or misplaces your bottom panel layout, and your windows get rendered into an invisible coordinate space &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;which is why apps are missing&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The fix:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kscreen-doctor output.DP-5.mode.2 output.DP-6.mode.59
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;and then, clear the plasma cache&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;killall -9 plasmashell
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rm -rf ~/.cache/plasmashell*
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mv ~/.config/plasma-org.kde.plasma.desktop-appletsrc ~/.config/plasma-org.kde.plasma.desktop-appletsrc.bak
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Then, log out, and log back in, or a simple restart.&lt;/p&gt;
+&lt;p&gt;RCA:&lt;/p&gt;
+&lt;p&gt;AMD hardware dealt with the bottleneck of USB 3.2 by using a built-in feature of the processor called Display Stream Compression (DSC). Under the hood, the chip compresses the display data, sends it over the 10Gbps link to the dock, and the dock decompresses it to show on the screens. When the screens were set to 144Hz/165Hz, the compression engine couldn&amp;rsquo;t squeeze the data down small enough to fit into that 10Gbps lane, causing the graphics stack to collapse. Dropping to 60Hz brought the raw data footprint small enough that the AMD controller could comfortably manage it without a single error! yay :D&lt;/p&gt;
+&lt;p&gt;The amdgpu kernel driver flooded the system logs with Mode Validation Warning: Unknown Status failed validation errors and rejected the display configuration.&lt;/p&gt;
+&lt;p&gt;Since the atomic modeset commits failed at the hardware layer, the window manager (kwin) passed invalid screen coordinate spaces (like display geometry -1) to KDE Plasma, crashing the UI shell.&lt;/p&gt;
+&lt;p&gt;And yes, I run on 60hz now on really capable monitors, but its old hardware, I&amp;rsquo;d rather have a working display rather than a finicky one :D&lt;/p&gt;
+&lt;p&gt;I can estimate I saved atleast 2-3 hours with gemini flash doing the heavy lifting of the analysis. very cool.&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>I still write a lot without AI</title>
         <link>https://karans.sh/p/i-still-write-a-lot-without-ai/</link>
         <pubDate>Thu, 12 Feb 2026 19:24:21 +0530</pubDate>
