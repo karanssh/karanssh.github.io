@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="AI shines in value in debugging when you know what you are doing">
+<title>Fixing a multi-monitor display issue with AI</title>
+
+<link rel='canonical' href='https://karans.sh/p/fixing-a-multi-monitor-display-issue-with-ai/'>
+
+<link rel="stylesheet" href="/scss/style.min.ae16cc1e0ed1e530553c343360d78035bcec88db486c9eeb25b8fa66ab7c2cd3.css"><meta property='og:title' content="Fixing a multi-monitor display issue with AI">
+<meta property='og:description' content="AI shines in value in debugging when you know what you are doing">
+<meta property='og:url' content='https://karans.sh/p/fixing-a-multi-monitor-display-issue-with-ai/'>
+<meta property='og:site_name' content='Karan&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-17T00:22:23&#43;05:30'/><meta property='article:modified_time' content='2026-07-17T00:22:23&#43;05:30'/>
+<meta name="twitter:title" content="Fixing a multi-monitor display issue with AI">
+<meta name="twitter:description" content="AI shines in value in debugging when you know what you are doing">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_39785804408be0da.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🤔</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Karan&#39;s blog</a></h1>
+            <h2 class="site-description">tech/life and everything else</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/karanssh'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.linkedin.com/in/karan-shah-39a81311a/'
+                        target="_blank"
+                        title="LinkedIn"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 3m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"/>
+  <path d="M8 11l0 5"/>
+  <path d="M8 8l0 .01"/>
+  <path d="M12 16l0 -5"/>
+  <path d="M16 16v-3a2 2 0 0 0 -4 0"/>
+</svg>
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://x.com/karanssh'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/resume/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>Resume</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/tech/" >
+                Tech
+            </a>
+        
+            <a href="/categories/ai/" >
+                AI
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/fixing-a-multi-monitor-display-issue-with-ai/">Fixing a multi-monitor display issue with AI</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            AI shines in value in debugging when you know what you are doing
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-07-17T00:22:23&#43;05:30'>Jul 17, 2026</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    8 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>I recently upgraded to cachy-os, and I have an older laptop (circa 2019), that I still daily drive. It&rsquo;s not the best at many tasks, but for my purpose of writing small scripts and projects + browsing the web, it works just fine. I ran into a very specific issue that bugged me like crazy, enough to tinker - when I connected it to a dock on a USB port, my displays would just refuse to work properly.</p>
+<p>The symptoms included:</p>
+<ul>
+<li>
+<p>The bottom desktop bar (KDE Plasma panel) vanished completely.</p>
+</li>
+<li>
+<p>Active application windows were lost in ghost coordinates.</p>
+</li>
+<li>
+<p>The desktop environment (plasmashell) crashed on startup with TypeError: Value is null warnings.</p>
+</li>
+</ul>
+<p>Context:</p>
+<p>I have two 2K monitors that can run at 144Hz, connected to a dock(fun fact - its a dell WD19DCS that I got for $30) via DP, which connects to my USB 3.1 port. All my peripherals also go in there. Not enough bandwidth to handle it all.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lspci <span class="p">|</span> grep -i usb
+</span></span><span class="line"><span class="cl">08:00.3 USB controller: Advanced Micro Devices, Inc. <span class="o">[</span>AMD<span class="o">]</span> Renoir/Cezanne USB 3.1
+</span></span><span class="line"><span class="cl">08:00.4 USB controller: Advanced Micro Devices, Inc. <span class="o">[</span>AMD<span class="o">]</span> Renoir/Cezanne USB 3.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Even though the Linux kernel uses the classic classification USB 3.1 in that text string, the specific architecture of the AMD Renoir/Cezanne hardware block means these controllers run at a maximum line speed of 10Gbps (historically called USB 3.1 Gen 2, now officially known as USB 3.2 Gen 2). Thanks USB forum, very cool.</p>
+<p>How did I debug this?</p>
+<p>always check the logs first</p>
+<p>first, we check kernel logs:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo dmesg -w
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>A ton of noise here, for sure:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> --user -b <span class="m">0</span> -e -u plasma-kwin_wayland
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:49:16 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Atomic modeset commit failed! Invalid argument
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:49:29 karanpc kwin_wayland_wrapper<span class="o">[</span>536167<span class="o">]</span>: xkbcommon: ERROR: <span class="o">[</span>XKB-679<span class="o">]</span> No Compose file <span class="k">for</span> locale <span class="s2">&#34;en_IN.ISO8859-1&#34;</span>: locale is either invalid or not installed
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:49:29 karanpc kwin_wayland_wrapper<span class="o">[</span>536167<span class="o">]</span>: xkbcommon: ERROR: <span class="o">[</span>XKB-679<span class="o">]</span> couldn<span class="s1">&#39;t find a Compose file for locale &#34;en_IN&#34; (mapped to &#34;en_IN.ISO8859-1&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Jul 17 16:49:29 karanpc kscreenlocker_greet[536167]: failed to create compose table
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Jul 17 16:49:31 karanpc kwin_wayland[4013]: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Jul 17 16:49:31 karanpc kwin_wayland[4013]: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Jul 17 16:49:31 karanpc kwin_wayland[4013]: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Jul 17 16:49:33 karanpc kwin_wayland[4013]: Could not delete render time query because no context is current
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Jul 17 16:49:33 karanpc kwin_wayland[4013]: Could not delete render time query because no context is current
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Jul 17 16:49:33 karanpc kwin_wayland[4013]: Could not delete render time query because no context is current
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Jul 17 16:51:17 karanpc kwin_wayland[4013]: Failed to open drm device 
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Jul 17 16:51:17 karanpc kwin_wayland[4013]: Failed to open drm device 
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Jul 17 16:51:17 karanpc kwin_wayland[4013]: Failed to open drm device 
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Jul 17 16:51:18 karanpc kscreenlocker_greet[537986]: There are no outputs - creating placeholder screen
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Jul 17 16:51:23 karanpc kwin_wayland_wrapper[537986]: xkbcommon: ERROR: [XKB-679] No Compose file for locale &#34;en_IN.ISO8859-1&#34;: locale is either invalid or not installed
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Jul 17 16:51:23 karanpc kwin_wayland_wrapper[537986]: xkbcommon: ERROR: [XKB-679] couldn&#39;</span>t find a Compose file <span class="k">for</span> locale <span class="s2">&#34;en_IN&#34;</span> <span class="o">(</span>mapped to <span class="s2">&#34;en_IN.ISO8859-1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:51:23 karanpc kscreenlocker_greet<span class="o">[</span>537986<span class="o">]</span>: failed to create compose table
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:51:41 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:51:41 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:51:41 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:51:43 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Could not delete render <span class="nb">time</span> query because no context is current
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:51:43 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Could not delete render <span class="nb">time</span> query because no context is current
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:51:43 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Could not delete render <span class="nb">time</span> query because no context is current
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:53:18 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Libinput: event0  - Power Button: client bug: event processing lagging behind by 3040ms, your system is too slow
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:53:18 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Libinput: event12 - Logitech USB Receiver Mouse: client bug: event processing lagging behind by 355ms, your system is too slow
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:53:18 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Failed to open drm device 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:53:18 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Failed to open drm device 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:53:18 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Failed to open drm device 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:53:20 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Failed to open /dev/input/event10 device <span class="o">(</span>No such device<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:53:26 karanpc kwin_wayland_wrapper<span class="o">[</span>540429<span class="o">]</span>: xkbcommon: ERROR: <span class="o">[</span>XKB-679<span class="o">]</span> No Compose file <span class="k">for</span> locale <span class="s2">&#34;en_IN.ISO8859-1&#34;</span>: locale is either invalid or not installed
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:53:26 karanpc kwin_wayland_wrapper<span class="o">[</span>540429<span class="o">]</span>: xkbcommon: ERROR: <span class="o">[</span>XKB-679<span class="o">]</span> couldn<span class="err">&#39;</span>t find a Compose file <span class="k">for</span> locale <span class="s2">&#34;en_IN&#34;</span> <span class="o">(</span>mapped to <span class="s2">&#34;en_IN.ISO8859-1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:53:26 karanpc kscreenlocker_greet<span class="o">[</span>540429<span class="o">]</span>: failed to create compose table
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:53:29 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:53:29 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:53:30 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Could not delete render <span class="nb">time</span> query because no context is current
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:53:30 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Could not delete render <span class="nb">time</span> query because no context is current
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:53:30 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Could not delete render <span class="nb">time</span> query because no context is current
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:59:23 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:59:23 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:59:23 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: qrc:/qt/qml/org/kde/kwin/overview/qml/Main.qml:851:5: QML Connections: Implicitly defined onFoo properties in Connections are deprecated. U&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:59:24 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Could not delete render <span class="nb">time</span> query because no context is current
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:59:24 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Could not delete render <span class="nb">time</span> query because no context is current
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Jul <span class="m">17</span> 16:59:24 karanpc kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Could not delete render <span class="nb">time</span> query because no context is current 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>A lot about display, isn&rsquo;t it?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kscreen-doctor --outputs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Checking this shows what resolution and refresh rate we are set at.</p>
+<p>how to know which driver is causing this? the max noise is from the gpu driver:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Validation Warning: Unknown Status failed validation.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>425080.040455<span class="o">]</span> amdgpu 0000:08:00.0: <span class="o">[</span>drm<span class="o">]</span> Mode Validation Warning: Unknown Status failed validation.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>425080.046980<span class="o">]</span> amdgpu 0000:08:00.0: <span class="o">[</span>drm<span class="o">]</span> Mode Validation Warning: Unknown Status failed validation.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>425080.051484<span class="o">]</span> amdgpu 0000:08:00.0: <span class="o">[</span>drm<span class="o">]</span> Mode Validation Warning: Unknown Status failed validation.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>425086.121387<span class="o">]</span> <span class="o">[</span>UFW BLOCK<span class="o">]</span> <span class="nv">IN</span><span class="o">=</span>wlan0 <span class="nv">OUT</span><span class="o">=</span> <span class="nv">MAC</span><span class="o">=</span>f0:a6:54:62:00:4b:4c:0f:3e:59:fc:2c:86:dd <span class="nv">SRC</span><span class="o">=</span>fe80:0000:0000:0000:4d48:62ef:06de:76e0 <span class="nv">DST</span><span class="o">=</span>ff02:0000:0000:0000:0000:0000:0001:0003 <span class="nv">LEN</span><span class="o">=</span><span class="m">70</span> <span class="nv">TC</span><span class="o">=</span><span class="m">0</span> <span class="nv">HOPLIMIT</span><span class="o">=</span><span class="m">1</span> <span class="nv">FLOWLBL</span><span class="o">=</span><span class="m">731061</span> <span class="nv">PROTO</span><span class="o">=</span>UDP <span class="nv">SPT</span><span class="o">=</span><span class="m">49340</span> <span class="nv">DPT</span><span class="o">=</span><span class="m">5355</span> <span class="nv">LEN</span><span class="o">=</span><span class="m">30</span> <span class="nv">MARK</span><span class="o">=</span>0x3214 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>425098.487271<span class="o">]</span> <span class="o">[</span>UFW BLOCK<span class="o">]</span> <span class="nv">IN</span><span class="o">=</span>wlan0 <span class="nv">OUT</span><span class="o">=</span> <span class="nv">MAC</span><span class="o">=</span>f0:a6:54:62:00:4b:3c:64:cf:3b:e6:44:08:00 <span class="nv">SRC</span><span class="o">=</span>192.168.68.1 <span class="nv">DST</span><span class="o">=</span>192.168.68.60 <span class="nv">LEN</span><span class="o">=</span><span class="m">375</span> <span class="nv">TOS</span><span class="o">=</span>0x00 <span class="nv">PREC</span><span class="o">=</span>0x00 <span class="nv">TTL</span><span class="o">=</span><span class="m">64</span> <span class="nv">ID</span><span class="o">=</span><span class="m">50401</span> DF <span class="nv">PROTO</span><span class="o">=</span>UDP <span class="nv">SPT</span><span class="o">=</span><span class="m">1900</span> <span class="nv">DPT</span><span class="o">=</span><span class="m">1900</span> <span class="nv">LEN</span><span class="o">=</span><span class="m">355</span> <span class="nv">MARK</span><span class="o">=</span>0x3214 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>425109.966692<span class="o">]</span> <span class="o">[</span>drm<span class="o">]</span> MST_DSC Send DSC disable to synaptics 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">journalctl --user -b <span class="m">0</span> -e -u plasma-kwin_wayland
+</span></span><span class="line"><span class="cl">kscreen-doctor --outputs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now, I could have google searched and read forums - but gemini flash gave me 2-3 options, and I used my discernment to check the most plausible cause.</p>
+<p>Here&rsquo;s the model output that I would have spent an unhealthy amount of time figuring out without AI doing all this reading:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">KWin Atomic Modeset Failures
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Your journalctl shows this critical error:
+</span></span><span class="line"><span class="cl">kwin_wayland<span class="o">[</span>4013<span class="o">]</span>: Atomic modeset commit failed! Invalid argument
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">When KWin <span class="o">(</span>the window manager<span class="o">)</span> tries to paint the desktop space across those high-refresh displays, the graphics driver returns an invalid argument because the configuration is physically impossible on that link. When an atomic commit fails in Wayland, KWin drops the output or maps it incorrectly.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Because the system thinks the display topology is invalid, Plasma deletes or misplaces your bottom panel layout, and your windows get rendered into an invisible coordinate space <span class="o">(</span>which is why apps are missing<span class="o">)</span>.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The fix:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kscreen-doctor output.DP-5.mode.2 output.DP-6.mode.59
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>and then, clear the plasma cache</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">killall -9 plasmashell
+</span></span><span class="line"><span class="cl">rm -rf ~/.cache/plasmashell*
+</span></span><span class="line"><span class="cl">mv ~/.config/plasma-org.kde.plasma.desktop-appletsrc ~/.config/plasma-org.kde.plasma.desktop-appletsrc.bak
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Then, log out, and log back in, or a simple restart.</p>
+<p>RCA:</p>
+<p>AMD hardware dealt with the bottleneck of USB 3.2 by using a built-in feature of the processor called Display Stream Compression (DSC). Under the hood, the chip compresses the display data, sends it over the 10Gbps link to the dock, and the dock decompresses it to show on the screens. When the screens were set to 144Hz/165Hz, the compression engine couldn&rsquo;t squeeze the data down small enough to fit into that 10Gbps lane, causing the graphics stack to collapse. Dropping to 60Hz brought the raw data footprint small enough that the AMD controller could comfortably manage it without a single error! yay :D</p>
+<p>The amdgpu kernel driver flooded the system logs with Mode Validation Warning: Unknown Status failed validation errors and rejected the display configuration.</p>
+<p>Since the atomic modeset commits failed at the hardware layer, the window manager (kwin) passed invalid screen coordinate spaces (like display geometry -1) to KDE Plasma, crashing the UI shell.</p>
+<p>And yes, I run on 60hz now on really capable monitors, but its old hardware, I&rsquo;d rather have a working display rather than a finicky one :D</p>
+<p>I can estimate I saved atleast 2-3 hours with gemini flash doing the heavy lifting of the analysis. very cool.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/everything-ai-reads-the-same-and-it-is-driving-me-crazy/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Everything AI reads the same and it is driving me crazy</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/tier-3-engineering-in-india-is-in-deep-trouble/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Tier 3 Engineering in India is in deep trouble</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/i-still-write-a-lot-without-ai/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">I still write a lot without AI</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/no-javascript-no-problem./">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">No JavaScript? No Problem.</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2026 Karan&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
