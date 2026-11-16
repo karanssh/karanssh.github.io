@@ -6,12 +6,28 @@
         <description>Recent content in Categories on Karan&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 17 Jul 2026 00:22:23 +0530</lastBuildDate><atom:link href="https://karans.sh/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 16 Nov 2026 23:24:11 +0530</lastBuildDate><atom:link href="https://karans.sh/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>AI</title>
         <link>https://karans.sh/categories/ai/</link>
-        <pubDate>Fri, 17 Jul 2026 00:22:23 +0530</pubDate>
+        <pubDate>Mon, 16 Nov 2026 23:24:11 +0530</pubDate>
         
         <guid>https://karans.sh/categories/ai/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Software</title>
+        <link>https://karans.sh/categories/software/</link>
+        <pubDate>Mon, 16 Nov 2026 23:24:11 +0530</pubDate>
+        
+        <guid>https://karans.sh/categories/software/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Work</title>
+        <link>https://karans.sh/categories/work/</link>
+        <pubDate>Mon, 16 Nov 2026 23:24:11 +0530</pubDate>
+        
+        <guid>https://karans.sh/categories/work/</guid>
         <description></description>
         </item>
         <item>
@@ -20,14 +36,6 @@
         <pubDate>Fri, 17 Jul 2026 00:22:23 +0530</pubDate>
         
         <guid>https://karans.sh/categories/tech/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Software</title>
-        <link>https://karans.sh/categories/software/</link>
-        <pubDate>Thu, 12 Feb 2026 19:24:21 +0530</pubDate>
-        
-        <guid>https://karans.sh/categories/software/</guid>
         <description></description>
         </item>
         <item>
